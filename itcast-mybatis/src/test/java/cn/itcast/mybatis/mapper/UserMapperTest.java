@@ -11,6 +11,9 @@ import org.apache.ibatis.session.SqlSessionFactoryBuilder;
 import org.junit.Before;
 import org.junit.Test;
 
+import com.github.pagehelper.PageHelper;
+import com.github.pagehelper.PageInfo;
+
 import cn.itcast.mybatis.pojo.User;
 
 public class UserMapperTest {
@@ -39,6 +42,28 @@ public class UserMapperTest {
 		for (User user : list) {
 			System.out.println(user);
 		}
+	}
+	
+	//分页查询
+	@Test
+	public void testQueryUsersInPage() {
+		//每页2条；查询第2页
+		
+		//设置分页；只对紧接着执行的查询语句生效
+		PageHelper.startPage(2, 2);//页号，页大小
+		
+		List<User> list = userMapper.queryUsers();
+		
+		//创建分页信息对象
+		PageInfo<User> pageInfo = new PageInfo<>(list);
+		
+		System.out.println("总记录数：" + pageInfo.getTotal() + "；总页数：" + pageInfo.getPages() + "；当前页号：" + 
+		pageInfo.getPageNum() +"；页大小：" + pageInfo.getPageSize());
+		
+		for (User user : pageInfo.getList()) {
+			System.out.println(user);
+		}
+		
 	}
 
 	@Test
