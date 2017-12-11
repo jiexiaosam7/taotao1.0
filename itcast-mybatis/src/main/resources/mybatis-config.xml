@@ -42,6 +42,7 @@
 	
 	<mappers>
 		<mapper resource="UserMapper.xml"/>
+		<mapper class="cn.itcast.mybatis.mapper.UserMapper2" />
 	</mappers>
 	
 </configuration>

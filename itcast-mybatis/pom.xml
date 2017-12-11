@@ -33,6 +33,13 @@
 			<artifactId>pagehelper</artifactId>
 		</dependency>
 
+		<!-- 通用mapper -->
+		<dependency>
+			<groupId>tk.mybatis</groupId>
+			<artifactId>mapper</artifactId>
+		</dependency>
+
+
 	</dependencies>
 	<build>
 		<plugins>
