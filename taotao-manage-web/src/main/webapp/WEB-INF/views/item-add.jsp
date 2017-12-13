@@ -91,6 +91,7 @@
 			return ;
 		}
 		$("#itemAddForm [name=price]").val(eval($("#itemAddForm [name=priceView]").val()) * 100);
+		//同步富文本编辑器的内容
 		itemAddEditor.sync();
 				
 		//提交到后台的RESTful
@@ -114,26 +115,34 @@
 	
 	//类目选择初始化
 	function initItemCat(){
+		//选取类名为selectItemCat的那些a元素
 		var selectItemCat = $(".selectItemCat");
+		//给上述选取到的元素注册点击事件
    		selectItemCat.click(function(){
+   			//创建一个div元素，设置div的内边距为5px，往里面添加一个ul标签；再将div渲染为window窗口
    			$("<div>").css({padding:"5px"}).html("<ul>")
    			.window({
    				width:'500',
    			    height:"450",
-   			    modal:true,
+   			    modal:true,//模式化窗口
    			    closed:true,
    			    iconCls:'icon-save',
    			    title:'选择类目',
+   			    //在打开面板之后触发。
    			    onOpen : function(){
+   			    	//this表示当前窗口
    			    	var _win = this;
+   			    	//在窗口里面查询ul标签并渲染为easyui tree组件
    			    	$("ul",_win).tree({
    			    		url:'/rest/item/cat',
    			    		method:'GET',
    			    		animate:true,
    			    		onClick : function(node){
+   			    			//如果当前选择的节点为叶子节点的话
    			    			if($(this).tree("isLeaf",node.target)){
    			    				// 填写到cid中
    			    				selectItemCat.parent().find("[name=cid]").val(node.id);
+   			    				//a标签的下一个兄弟节点设置其文本内容为当前选择的节点名称
    			    				selectItemCat.next().text(node.text);
    			    				$(_win).window('close');
    			    			}

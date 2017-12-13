@@ -43,7 +43,7 @@ $(function(){
 	$('#menu').tree({
 		onClick: function(node){
 			if($('#menu').tree("isLeaf",node.target)){
-				var tabs = $("#tabs");
+				var tabs = $("#tabs");//dom,jQuery,easyui
 				var tab = tabs.tabs("getTab",node.text);
 				if(tab){
 					tabs.tabs("select",node.text);
