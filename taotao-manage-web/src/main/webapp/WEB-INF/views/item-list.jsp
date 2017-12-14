@@ -139,12 +139,13 @@
         text:'<input type="text" id="search" name="search">'
     }];
     
+    //$(fuction(){});
     $(document).ready(function(){
     	
     	$("#itemList").datagrid({
-    		singleSelect:false,
-    		collapsible:true,
-    		pagination:true,
+    		singleSelect:false,//可以多选
+    		collapsible:true,//可以折叠
+    		pagination:true,//分页导航条
     		url:'/rest/item',
     		method:'get',
     		pageSize:30,

@@ -23,6 +23,25 @@ public class ItemCatController {
 	private ItemCatService itemCatService;
 	
 	/**
+	 * 根据商品类目id查询该类目
+	 * @param parentId 父节点id
+	 * @return
+	 */
+	@RequestMapping(value = "/{categoryId}", method = RequestMethod.GET)
+	public ResponseEntity<ItemCat> queryItemCatByCategoryId(@PathVariable Long categoryId){
+		try {
+			
+			ItemCat itemCat = itemCatService.queryById(categoryId);
+			
+			return ResponseEntity.ok(itemCat);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		//如果发生错误，异常；返回http响应状态码为500
+		return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(null);
+	}
+	
+	/**
 	 * 根据商品类目父id查询该类目下的所有子类目；并在树组件加载数据
 	 * @param parentId 父节点id
 	 * @return
