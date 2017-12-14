@@ -159,18 +159,24 @@
 	//图片上传初始化
 	function initPicUpload(){
        	$(".picFileUpload").click(function(){
+       		//获取id为itemAddForm的元素
        		var form = $('#itemAddForm');
+       		//设置富文本编辑器的初始化参数kingEditorParams;加载富文本编辑器的多图片上传插件
        		KindEditor.editor(kingEditorParams).loadPlugin('multiimage',function(){
        			var editor = this;
        			editor.plugin.multiImageDialog({
-					clickFn : function(urlList) {
+       				//当点击 全部插入 的时候触发
+					clickFn : function(urlList) {//urlList就是上传返回后的结果对象
 						$(".pics li").remove();
 						var imgArray = [];
 						KindEditor.each(urlList, function(i, data) {
 							imgArray.push(data.url);
+							//将图片追加到图片显示区域
 							$(".pics ul").append("<li><a href='"+data.url+"' target='_blank'><img src='"+data.url+"' width='80' height='50' /></a></li>");
 						});
+						//设置上传的图片路径到商品的图片属性中
 						form.find("[name=image]").val(imgArray.join(","));
+						//将上传的组件隐藏
 						editor.hideDialog();
 					}
 				});
