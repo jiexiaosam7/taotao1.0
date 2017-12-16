@@ -30,7 +30,9 @@ $(function(){
 	var datagrid = $("#contentList");
 	tree.tree({
 		onClick : function(node){
+			//如果是叶子节点的话
 			if(tree.tree("isLeaf",node.target)){
+				//将数据表格数据按照新选择的内容分类id查询数据
 				datagrid.datagrid('reload', {
 					categoryId :node.id
 		        });
