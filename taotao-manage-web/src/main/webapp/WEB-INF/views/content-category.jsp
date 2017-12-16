@@ -38,7 +38,7 @@ $(function(){
         				id : data.id
         			});
         		});
-        	}else{
+        	}else{//重命名
         		$.ajax({
         			   type: "POST",
         			   url: "/rest/content/category/update",
@@ -74,10 +74,11 @@ function menuHandler(item){
 		var _node = tree.tree('find',0);
 		//选中新节点，并开始编辑新节点。
 		tree.tree("select",_node.target).tree('beginEdit',_node.target);
-	}else if(item.name === "rename"){
+	}else if(item.name === "rename"){//重命名
 		tree.tree('beginEdit',node.target);
-	}else if(item.name === "delete"){
+	}else if(item.name === "delete"){//删除
 		$.messager.confirm('确认','确定删除名为 '+node.text+' 的分类吗？',function(r){
+			//当用户点击“确定”按钮的时侯将传递一个true值给回调函数，否则传递一个false值。 
 			if(r){
 				$.ajax({
      			   type: "POST",
