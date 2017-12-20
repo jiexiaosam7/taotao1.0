@@ -48,8 +48,8 @@
 	
 	
 	<!-- 单机版redis -->
-	<bean id="jedisPoolService" class="com.taotao.manage.service.redis.impl.JedisPoolService"></bean>
+	<bean id="jedisPoolService" class="com.taotao.common.service.redis.impl.JedisPoolService"></bean>
 	
 	<!-- 集群版redis；开发环境可以只使用单机版，所以注释集群版的实现类 -->
-	<!-- <bean id="jedisClusterService" class="com.taotao.manage.service.redis.impl.JedisClusterService"></bean> -->
+	<!-- <bean id="com.taotao.common.service.redis.impl.JedisClusterService"></bean> -->
 </beans>

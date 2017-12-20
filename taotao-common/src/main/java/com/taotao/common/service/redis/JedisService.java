@@ -1,4 +1,4 @@
-package com.taotao.manage.service.redis;
+package com.taotao.common.service.redis;
 /**
  * 接口
  * @author xiaoxiao
@@ -19,7 +19,7 @@ public interface JedisService {
 	public String get(String key);
 	
 	//删除key值
-	public Long delete(String key);
+	public Long del(String key);
 	
 	//自增
 	public Long incr(String key);
